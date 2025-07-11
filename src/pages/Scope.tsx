@@ -56,12 +56,12 @@ const Scope = () => {
           
           <div className="mt-8 text-center">
             <div className="animate-pulse">
-              <div className="h-8 bg-muted rounded w-1/3 mx-auto mb-4"></div>
-              <div className="h-4 bg-muted rounded w-2/3 mx-auto mb-8"></div>
-              <div className="h-32 bg-muted rounded mb-8"></div>
+              <div className="h-8 bg-gradient-to-r from-muted via-muted-foreground/10 to-muted bg-[length:200%_100%] rounded w-1/3 mx-auto mb-4 animate-skeleton-wave"></div>
+              <div className="h-4 bg-gradient-to-r from-muted via-muted-foreground/10 to-muted bg-[length:200%_100%] rounded w-2/3 mx-auto mb-8 animate-skeleton-wave"></div>
+              <div className="h-32 bg-gradient-to-r from-muted via-muted-foreground/10 to-muted bg-[length:200%_100%] rounded mb-8 animate-skeleton-wave"></div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-32 bg-muted rounded"></div>
+                  <div key={i} className="h-32 bg-gradient-to-r from-muted via-muted-foreground/10 to-muted bg-[length:200%_100%] rounded animate-skeleton-wave" style={{ animationDelay: `${i * 100}ms` }}></div>
                 ))}
               </div>
             </div>
@@ -82,9 +82,9 @@ const Scope = () => {
           { label: "Scope", current: true }
         ]} />
 
-        <div className="mt-8">
+        <div className="mt-8 animate-fade-in-down">
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            {companyName}
+            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">{companyName}</span>
           </h1>
           
           <div className="mb-8">
@@ -108,7 +108,7 @@ const Scope = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Agentify Customer Support - Active */}
               <Card 
-                className="cursor-pointer hover:shadow-md transition-shadow border-primary/20"
+                className="cursor-pointer hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-primary/20 animate-fade-in-up animate-pulse-glow"
                 onClick={() => handleActivityClick("agentify")}
               >
                 <CardHeader className="relative">
@@ -141,7 +141,8 @@ const Scope = () => {
 
               {/* Transform Go To Market - Inactive */}
               <Card 
-                className="cursor-pointer opacity-60 hover:opacity-80 transition-opacity"
+                className="cursor-pointer opacity-60 hover:opacity-80 transition-all duration-300 hover:-translate-y-1 animate-fade-in-up"
+                style={{ animationDelay: '100ms' }}
                 onClick={() => handleActivityClick("go-to-market")}
               >
                 <CardHeader>
@@ -158,7 +159,8 @@ const Scope = () => {
 
               {/* Add More - Inactive */}
               <Card 
-                className="cursor-pointer opacity-60 hover:opacity-80 transition-opacity border-dashed"
+                className="cursor-pointer opacity-60 hover:opacity-80 transition-all duration-300 hover:-translate-y-1 border-dashed animate-fade-in-up"
+                style={{ animationDelay: '200ms' }}
                 onClick={() => handleActivityClick("add-more")}
               >
                 <CardHeader>

@@ -61,16 +61,16 @@ const Landing = () => {
     <div className="min-h-screen flex items-center justify-center bg-background relative">
       {/* APEX Logo Background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <h1 className="text-9xl font-bold text-muted-foreground/10 select-none">
+        <h1 className="text-9xl font-bold text-muted-foreground/10 select-none animate-apex-pulse">
           APEX
         </h1>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-md px-6">
+      <div className="relative z-10 w-full max-w-md px-6 animate-fade-in-down">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-2">
+            <h2 className="text-2xl font-semibold text-foreground mb-2 bg-gradient-to-r from-foreground via-primary to-foreground bg-[length:200%_100%] bg-clip-text text-transparent animate-text-shimmer">
               Process Excellence Analysis
             </h2>
             <p className="text-muted-foreground">
@@ -84,10 +84,10 @@ const Landing = () => {
               placeholder="company.com"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="flex-1"
+              className="flex-1 transition-all duration-300 focus:shadow-lg focus:shadow-primary/20"
               autoFocus
             />
-            <Button type="submit" size="lg">
+            <Button type="submit" size="lg" className="transition-all duration-200 hover:scale-105 active:scale-95 relative overflow-hidden">
               Let's Go
             </Button>
           </div>

@@ -219,7 +219,7 @@ const ImpactRationale = () => {
           { label: "Impact Rationale", current: true }
         ]} />
 
-        <div className="mt-8">
+        <div className="mt-8 animate-fade-in-down">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-foreground">
               Impact Rationale
@@ -236,8 +236,8 @@ const ImpactRationale = () => {
             <CardContent>
               <div className="space-y-6">
                 {impactData.map((item, index) => (
-                  <div key={index} className="border rounded-lg p-4 space-y-4">
-                    <div className="flex items-center gap-4">
+                  <div key={index} className="border rounded-lg p-4 space-y-4 animate-fade-in-up transition-all duration-250 hover:scale-[1.02] focus-within:ring-2 focus-within:ring-primary/20" style={{ animationDelay: `${index * 50}ms` }}>
+                    <div className="flex items-center gap-4 border-l-4 border-primary pl-4">
                       <div className="flex items-center gap-2 min-w-0 flex-1">
                         <div className={`w-3 h-3 rounded-full ${getCategoryColor(item.category)}`} />
                         <span className="font-medium truncate">{item.aiInitiative}</span>
@@ -260,7 +260,7 @@ const ImpactRationale = () => {
                             max="100"
                             value={item.impactPercentage}
                             onChange={(e) => updateImpactPercentage(index, e.target.value)}
-                            className="w-20"
+                            className="w-20 transition-all duration-300 focus:shadow-lg focus:shadow-primary/10"
                           />
                           <span className="text-muted-foreground">%</span>
                         </div>

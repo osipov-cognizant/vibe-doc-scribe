@@ -84,11 +84,134 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				// APEX Background Pulse
+				'apex-pulse': {
+					'0%, 100%': {
+						transform: 'scale(1)',
+						opacity: '0.1'
+					},
+					'50%': {
+						transform: 'scale(1.02)',
+						opacity: '0.15'
+					}
+				},
+				// Text Shimmer
+				'text-shimmer': {
+					'0%': {
+						backgroundPosition: '0% 50%'
+					},
+					'100%': {
+						backgroundPosition: '200% 50%'
+					}
+				},
+				// Skeleton Wave
+				'skeleton-wave': {
+					'0%': {
+						backgroundPosition: '-200% 0'
+					},
+					'100%': {
+						backgroundPosition: '200% 0'
+					}
+				},
+				// Fade in with slide up
+				'fade-in-up': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				// Fade in with slide down
+				'fade-in-down': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(-20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				// Fade in with slide right
+				'fade-in-right': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(-20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				// Pulsing glow
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 0 hsl(var(--primary) / 0.3)'
+					},
+					'50%': {
+						boxShadow: '0 0 15px hsl(var(--primary) / 0.6)'
+					}
+				},
+				// Scale bounce
+				'scale-bounce': {
+					'0%, 100%': {
+						transform: 'scale(1)'
+					},
+					'50%': {
+						transform: 'scale(1.2)'
+					}
+				},
+				// Typewriter
+				'typewriter': {
+					'0%': {
+						width: '0'
+					},
+					'100%': {
+						width: '100%'
+					}
+				},
+				// Count up
+				'count-up': {
+					'0%': {
+						transform: 'translateY(10px)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
+				},
+				// Ripple effect
+				'ripple': {
+					'0%': {
+						transform: 'scale(0)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'scale(4)',
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				// APEX Animations
+				'apex-pulse': 'apex-pulse 4s ease-in-out infinite',
+				'text-shimmer': 'text-shimmer 2s linear infinite',
+				'skeleton-wave': 'skeleton-wave 1.5s ease-in-out infinite',
+				'fade-in-up': 'fade-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+				'fade-in-down': 'fade-in-down 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+				'fade-in-right': 'fade-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'scale-bounce': 'scale-bounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+				'typewriter': 'typewriter 1s steps(var(--characters), end)',
+				'count-up': 'count-up 1s cubic-bezier(0.6, 0, 0.4, 1)',
+				'ripple': 'ripple 0.6s ease-out'
 			}
 		}
 	},

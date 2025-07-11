@@ -144,7 +144,7 @@ const Productivity = () => {
           { label: "Productivity", current: true }
         ]} />
 
-        <div className="mt-8">
+        <div className="mt-8 animate-fade-in-down">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-foreground">
               Final Productivity Analysis
@@ -155,9 +155,9 @@ const Productivity = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
-            <Card>
+            <Card className="animate-fade-in-up">
               <CardContent className="pt-6">
-                <div className="text-2xl font-bold text-primary">
+                <div className="text-2xl font-bold text-primary animate-count-up">
                   {productivityData.length}
                 </div>
                 <p className="text-muted-foreground">
@@ -166,9 +166,9 @@ const Productivity = () => {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="animate-fade-in-up" style={{ animationDelay: '100ms' }}>
               <CardContent className="pt-6">
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-2xl font-bold text-green-600 animate-count-up">
                   {productivityData.filter(item => item.category === "Autonomous Agent").length}
                 </div>
                 <p className="text-muted-foreground">
@@ -177,9 +177,9 @@ const Productivity = () => {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
               <CardContent className="pt-6">
-                <div className="text-2xl font-bold text-blue-600">
+                <div className="text-2xl font-bold text-blue-600 animate-count-up">
                   {productivityData.filter(item => item.category === "Copilot Agent").length}
                 </div>
                 <p className="text-muted-foreground">
@@ -188,9 +188,9 @@ const Productivity = () => {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
               <CardContent className="pt-6">
-                <div className="text-2xl font-bold text-red-500">
+                <div className="text-2xl font-bold text-red-500 animate-count-up">
                   {productivityData.filter(item => item.category === "Robotic Process Automation").length}
                 </div>
                 <p className="text-muted-foreground">
@@ -200,7 +200,7 @@ const Productivity = () => {
             </Card>
           </div>
 
-          <Card>
+          <Card className="animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <CardHeader>
               <CardTitle>Final Productivity Impact Calculation</CardTitle>
             </CardHeader>
@@ -219,7 +219,7 @@ const Productivity = () => {
                   </thead>
                   <tbody>
                     {productivityData.map((item, index) => (
-                      <tr key={index} className="border-b hover:bg-muted/50">
+                      <tr key={index} className="border-b hover:bg-muted/50 animate-fade-in-right" style={{ animationDelay: `${500 + index * 50}ms` }}>
                         <td className="p-3">
                           <div className="flex items-center gap-2">
                             <div className={`w-3 h-3 rounded-full ${getCategoryColor(item.category)}`} />

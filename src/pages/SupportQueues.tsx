@@ -185,7 +185,7 @@ const SupportQueues = () => {
           { label: "Support Queues", current: true }
         ]} />
 
-        <div className="mt-8">
+        <div className="mt-8 animate-fade-in-down">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-foreground">
               Support Queues & AI Interventions
@@ -225,10 +225,10 @@ const SupportQueues = () => {
                           <td key={queue.id} className="p-3 text-center">
                             <button
                               onClick={() => toggleRelevance(intervention.id, queue.id)}
-                              className={`w-8 h-8 rounded-full border-2 transition-colors ${
+                              className={`w-8 h-8 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
                                 interventionRelevance[intervention.id]?.[queue.id]
-                                  ? 'bg-primary border-primary'
-                                  : 'bg-background border-muted-foreground'
+                                  ? 'bg-primary border-primary animate-scale-bounce'
+                                  : 'bg-background border-muted-foreground hover:border-primary/50'
                               }`}
                             >
                               {interventionRelevance[intervention.id]?.[queue.id] && (
@@ -251,10 +251,10 @@ const SupportQueues = () => {
               <TabsTrigger value="interventions">AI Interventions</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="queues" className="mt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {supportQueues.map(queue => (
-                  <Card key={queue.id}>
+          <TabsContent value="queues" className="mt-6 animate-fade-in-right">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {supportQueues.map((queue, index) => (
+                  <Card key={queue.id} className="animate-fade-in-up hover:-translate-y-1 hover:shadow-lg transition-all duration-200" style={{ animationDelay: `${index * 100}ms` }}>
                     <CardHeader>
                       <CardTitle>{queue.name}</CardTitle>
                     </CardHeader>
@@ -272,10 +272,10 @@ const SupportQueues = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="interventions" className="mt-6">
+            <TabsContent value="interventions" className="mt-6 animate-fade-in-right">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {aiInterventions.map(intervention => (
-                  <Card key={intervention.id}>
+                {aiInterventions.map((intervention, index) => (
+                  <Card key={intervention.id} className="animate-fade-in-up hover:-translate-y-1 hover:shadow-lg transition-all duration-200" style={{ animationDelay: `${index * 100}ms` }}>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <div className={`w-3 h-3 rounded-full ${getCategoryColor(intervention.category)}`} />
