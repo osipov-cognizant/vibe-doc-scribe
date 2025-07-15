@@ -79,7 +79,7 @@ const Landing = () => {
               />
             </div>
             <h2 className="text-2xl font-semibold text-foreground mb-2 bg-gradient-to-r from-foreground via-primary to-foreground bg-[length:200%_100%] bg-clip-text text-transparent animate-text-shimmer">
-              Process Excellence Analysis
+              Agentic Process Excellence
             </h2>
             <p className="text-muted-foreground">
               Enter a company website to begin analysis
