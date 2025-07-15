@@ -108,7 +108,7 @@ const Scope = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Agentify Customer Support - Active */}
               <Card 
-                className="cursor-pointer hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-primary/20 animate-fade-in-up animate-pulse-glow"
+                className="cursor-pointer hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-primary/20 animate-fade-in-up"
                 onClick={() => handleActivityClick("agentify")}
               >
                 <CardHeader className="relative">
