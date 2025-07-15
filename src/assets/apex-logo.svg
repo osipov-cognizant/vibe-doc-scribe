@@ -15,10 +15,10 @@
   <text x="10" y="32" class="logo-letter" fill="#9ca3af">A</text>
   
   <!-- P -->
-  <text x="48" y="34" class="logo-letter" fill="#6b7280">P</text>
+  <text x="48" y="32" class="logo-letter" fill="#6b7280">P</text>
   
   <!-- E -->
-  <text x="86" y="30" class="logo-letter" fill="#4b5563">E</text>
+  <text x="86" y="32" class="logo-letter" fill="#4b5563">E</text>
   
   <!-- X -->
   <text x="124" y="32" class="logo-letter" fill="#374151">X</text>
