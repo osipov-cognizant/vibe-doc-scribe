@@ -1,0 +1,28 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .logo-letter {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 700;
+        font-size: 36px;
+        font-style: italic;
+        letter-spacing: 2px;
+      }
+    </style>
+  </defs>
+  
+  <!-- A -->
+  <text x="10" y="32" class="logo-letter" fill="#9ca3af">A</text>
+  
+  <!-- P -->
+  <text x="48" y="34" class="logo-letter" fill="#6b7280">P</text>
+  
+  <!-- E -->
+  <text x="86" y="30" class="logo-letter" fill="#4b5563">E</text>
+  
+  <!-- X -->
+  <text x="124" y="32" class="logo-letter" fill="#374151">X</text>
+  
+  <!-- Subtle accent line for movement -->
+  <line x1="15" y1="45" x2="155" y2="41" stroke="#e5e7eb" stroke-width="1" opacity="0.6"/>
+</svg>
