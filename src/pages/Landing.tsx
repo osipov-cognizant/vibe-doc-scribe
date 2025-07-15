@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import apexLogo from "@/assets/apex-logo.svg";
 
 const Landing = () => {
   const [url, setUrl] = useState("");
@@ -70,6 +71,13 @@ const Landing = () => {
       <div className="relative z-10 w-full max-w-md px-6 animate-fade-in-down">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="text-center mb-8">
+            <div className="flex justify-center mb-6">
+              <img 
+                src={apexLogo} 
+                alt="APEX Logo" 
+                className="w-48 h-auto animate-fade-in"
+              />
+            </div>
             <h2 className="text-2xl font-semibold text-foreground mb-2 bg-gradient-to-r from-foreground via-primary to-foreground bg-[length:200%_100%] bg-clip-text text-transparent animate-text-shimmer">
               Process Excellence Analysis
             </h2>
