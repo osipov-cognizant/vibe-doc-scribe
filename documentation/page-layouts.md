@@ -95,7 +95,7 @@ The scope page displays company information and available process excellence act
 
 ## Support Queues Page
 
-The support queues page allows configuration of support queues and AI interventions with a relevance matrix.
+The support queues page allows configuration of support queues and AI interventions with a relevance matrix. Users can add and delete both support queues and AI interventions dynamically.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -117,16 +117,22 @@ The support queues page allows configuration of support queues and AI interventi
 │ ┌─Support Queues─┐ ┌─AI Interventions─┐                                    │
 │ │                │ │                  │                                    │
 │ │ ┌─────────────┐ │ │ ┌──────────────┐ │                                    │
-│ │ │ Technical   │ │ │ │ 🔵 AI Chatbot│ │                                    │
+│ │ │ Technical ❌│ │ │ │ 🔵 AI Chat❌ │ │                                    │
 │ │ │ Support     │ │ │ │ Description  │ │                                    │
 │ │ │ [desc...]   │ │ │ │ Complexity   │ │                                    │
 │ │ └─────────────┘ │ │ │ Category     │ │                                    │
 │ │                 │ │ │ Badges       │ │                                    │
 │ │ ┌─────────────┐ │ │ └──────────────┘ │                                    │
-│ │ │ Billing     │ │ │                  │                                    │
+│ │ │ Billing  ❌ │ │ │                  │                                    │
 │ │ │ Inquiries   │ │ │ ┌──────────────┐ │                                    │
-│ │ │ [desc...]   │ │ │ │ 🟢 Smart     │ │                                    │
+│ │ │ [desc...]   │ │ │ │ 🟢 Smart  ❌ │ │                                    │
 │ │ └─────────────┘ │ │ │ Routing...   │ │                                    │
+│ │                 │ │ └──────────────┘ │                                    │
+│ │ ┌─────────────┐ │ │                  │                                    │
+│ │ │   Add New   │ │ │ ┌──────────────┐ │                                    │
+│ │ │ Queue   +   │ │ │ │   Add New    │ │                                    │
+│ │ │             │ │ │ │Intervention +│ │                                    │
+│ │ └─────────────┘ │ │ └──────────────┘ │                                    │
 │ └─────────────────┘ │ └──────────────┘ │                                    │
 │                     └──────────────────┘                                    │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -135,12 +141,25 @@ The support queues page allows configuration of support queues and AI interventi
 ### Key Components:
 - **Header**: Title with "Next" button
 - **Relevance Matrix**: Interactive grid showing AI intervention applicability to support queues
+  - Automatically updates when queues or interventions are added/deleted
 - **Tabs**: Toggle between "Support Queues" and "AI Interventions"
-- **Support Queue Cards**: Editable descriptions for each queue
+- **Support Queue Cards**: 
+  - Editable descriptions for each queue
+  - Delete button (❌) to remove queue and its matrix column
+  - "Add New Queue" card with plus icon for creating new queues
 - **AI Intervention Cards**: 
   - Color-coded by category (🔵 Copilot, 🟢 Autonomous, 🔴 RPA)
   - Editable descriptions, complexity, and category
+  - Delete button (❌) to remove intervention and its matrix row
+  - "Add New Intervention" card with plus icon for creating new interventions
   - Badges showing timeline and productivity impact
+
+### Dynamic Functionality:
+- **Add Support Queue**: Creates new queue with default name and description
+- **Delete Support Queue**: Removes queue and corresponding matrix column
+- **Add AI Intervention**: Creates new intervention with selectable category
+- **Delete AI Intervention**: Removes intervention and corresponding matrix row
+- **Matrix Synchronization**: Relevance matrix automatically adjusts when items are added/deleted
 
 ---
 

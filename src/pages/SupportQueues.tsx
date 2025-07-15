@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Badge } from "@/components/ui/badge";
+import { Plus, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface AIIntervention {
   id: string;
@@ -26,6 +28,7 @@ interface SupportQueue {
 const SupportQueues = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const url = searchParams.get("url");
   const activity = searchParams.get("activity");
   
@@ -125,6 +128,105 @@ const SupportQueues = () => {
         intervention.id === interventionId 
           ? { ...intervention, [property]: value }
           : intervention
+      )
+    );
+  };
+
+  const addSupportQueue = () => {
+    const newId = `queue-${Date.now()}`;
+    const newQueue: SupportQueue = {
+      id: newId,
+      name: "New Support Queue",
+      description: "Enter description for this support queue"
+    };
+    
+    setSupportQueues(prev => [...prev, newQueue]);
+    
+    // Add relevance entries for all existing interventions
+    setInterventionRelevance(prev => {
+      const updated = { ...prev };
+      aiInterventions.forEach(intervention => {
+        updated[intervention.id] = {
+          ...updated[intervention.id],
+          [newId]: true
+        };
+      });
+      return updated;
+    });
+
+    toast({
+      title: "Queue Added",
+      description: "New support queue created successfully.",
+    });
+  };
+
+  const deleteSupportQueue = (queueId: string) => {
+    setSupportQueues(prev => prev.filter(queue => queue.id !== queueId));
+    
+    // Remove relevance entries for this queue
+    setInterventionRelevance(prev => {
+      const updated = { ...prev };
+      Object.keys(updated).forEach(interventionId => {
+        delete updated[interventionId][queueId];
+      });
+      return updated;
+    });
+
+    toast({
+      title: "Queue Deleted",
+      description: "Support queue and its relevance data removed.",
+    });
+  };
+
+  const addAIIntervention = () => {
+    const newId = `intervention-${Date.now()}`;
+    const newIntervention: AIIntervention = {
+      id: newId,
+      name: "New AI Intervention",
+      description: "Enter description for this AI intervention",
+      complexity: "Quick Win",
+      category: "Copilot Agent"
+    };
+    
+    setAiInterventions(prev => [...prev, newIntervention]);
+    
+    // Add relevance entries for all existing queues
+    const relevanceEntry: Record<string, boolean> = {};
+    supportQueues.forEach(queue => {
+      relevanceEntry[queue.id] = true;
+    });
+    
+    setInterventionRelevance(prev => ({
+      ...prev,
+      [newId]: relevanceEntry
+    }));
+
+    toast({
+      title: "Intervention Added",
+      description: "New AI intervention created successfully.",
+    });
+  };
+
+  const deleteAIIntervention = (interventionId: string) => {
+    setAiInterventions(prev => prev.filter(intervention => intervention.id !== interventionId));
+    
+    // Remove relevance entries for this intervention
+    setInterventionRelevance(prev => {
+      const updated = { ...prev };
+      delete updated[interventionId];
+      return updated;
+    });
+
+    toast({
+      title: "Intervention Deleted",
+      description: "AI intervention and its relevance data removed.",
+    });
+  };
+
+  const updateQueueName = (queueId: string, name: string) => {
+    setSupportQueues(prev => 
+      prev.map(queue => 
+        queue.id === queueId ? { ...queue, name } : queue
       )
     );
   };
@@ -256,7 +358,23 @@ const SupportQueues = () => {
                 {supportQueues.map((queue, index) => (
                   <Card key={queue.id} className="animate-fade-in-up hover:-translate-y-1 hover:shadow-lg transition-all duration-200" style={{ animationDelay: `${index * 100}ms` }}>
                     <CardHeader>
-                      <CardTitle>{queue.name}</CardTitle>
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="flex-1">
+                          <Input
+                            value={queue.name}
+                            onChange={(e) => updateQueueName(queue.id, e.target.value)}
+                            className="text-lg font-semibold border-none p-0 h-auto bg-transparent focus-visible:ring-0"
+                          />
+                        </CardTitle>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground"
+                          onClick={() => deleteSupportQueue(queue.id)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </CardHeader>
                     <CardContent>
                       <Label htmlFor={`queue-${queue.id}`}>Description</Label>
@@ -269,6 +387,18 @@ const SupportQueues = () => {
                     </CardContent>
                   </Card>
                 ))}
+                
+                {/* Add New Queue Card */}
+                <Card 
+                  className="animate-fade-in-up hover:-translate-y-1 hover:shadow-lg transition-all duration-200 border-dashed cursor-pointer"
+                  style={{ animationDelay: `${supportQueues.length * 100}ms` }}
+                  onClick={addSupportQueue}
+                >
+                  <CardContent className="flex flex-col items-center justify-center h-32 text-muted-foreground hover:text-foreground">
+                    <Plus className="h-8 w-8 mb-2" />
+                    <span className="text-sm font-medium">Add New Queue</span>
+                  </CardContent>
+                </Card>
               </div>
             </TabsContent>
             
@@ -277,10 +407,24 @@ const SupportQueues = () => {
                 {aiInterventions.map((intervention, index) => (
                   <Card key={intervention.id} className="animate-fade-in-up hover:-translate-y-1 hover:shadow-lg transition-all duration-200" style={{ animationDelay: `${index * 100}ms` }}>
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <div className={`w-3 h-3 rounded-full ${getCategoryColor(intervention.category)}`} />
-                        {intervention.name}
-                      </CardTitle>
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="flex items-center gap-2 flex-1">
+                          <div className={`w-3 h-3 rounded-full ${getCategoryColor(intervention.category)}`} />
+                          <Input
+                            value={intervention.name}
+                            onChange={(e) => updateInterventionProperty(intervention.id, 'name', e.target.value)}
+                            className="text-lg font-semibold border-none p-0 h-auto bg-transparent focus-visible:ring-0"
+                          />
+                        </CardTitle>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground"
+                          onClick={() => deleteAIIntervention(intervention.id)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
@@ -356,6 +500,18 @@ const SupportQueues = () => {
                     </CardContent>
                   </Card>
                 ))}
+                
+                {/* Add New Intervention Card */}
+                <Card 
+                  className="animate-fade-in-up hover:-translate-y-1 hover:shadow-lg transition-all duration-200 border-dashed cursor-pointer"
+                  style={{ animationDelay: `${aiInterventions.length * 100}ms` }}
+                  onClick={addAIIntervention}
+                >
+                  <CardContent className="flex flex-col items-center justify-center h-48 text-muted-foreground hover:text-foreground">
+                    <Plus className="h-8 w-8 mb-2" />
+                    <span className="text-sm font-medium">Add New Intervention</span>
+                  </CardContent>
+                </Card>
               </div>
             </TabsContent>
           </Tabs>
